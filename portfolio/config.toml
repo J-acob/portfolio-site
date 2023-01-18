@@ -1,0 +1,4 @@
+baseURL = "https://J-acob.github.io"
+languageCode = "en-us"
+title = "Jacob's portfiolio website"
+theme = "hugo-coder"
