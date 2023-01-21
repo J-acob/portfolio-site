@@ -7,8 +7,9 @@ tags = [
     "markdown",
     "text",
     "game",
+    "graphics"
 ]
 categories = [
-    "game",
+    "stuff",
 ]
 +++
