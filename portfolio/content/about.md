@@ -15,7 +15,7 @@ Hey there. I'm Jacob. I'm a software engineer with a bachelors degree in compute
 [languages](/tags/languages),
 and, [game development](/tags/game-development). 
 
-I care a lot about [open source software](/tags/open-source), [education](/tags/education), and [sustainable software practices](/tags/sustainabilit). 
+I care a lot about [open source software](/tags/open-source), [education](/tags/education), and [sustainable software practices](/tags/sustainability). 
 
 My favorite languages are -  [Rust](/tags/rust)<span class="nowrap"><span class="emojify"></span> <code>:crab:</code></span>, 
 [Typescript](/tags/typescript), 
@@ -26,5 +26,9 @@ I'm also comfortable with working in any of the "C descended languages" such as 
 To see what languages and frameworks I've worked with professionally, [reach out to me](/contact/) for my resume.
 
 Now go check out some of my [projects](/projects/), [read my blog](/posts/), [play some of my games]().
+
+{{< notice warning >}}
+This website is under construction and may change. some sections are unfinished and will get more content. 
+{{< /notice >}}
 
 ---

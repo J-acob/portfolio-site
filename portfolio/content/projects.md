@@ -3,4 +3,5 @@ title = "Projects"
 slug = "projects"
 +++
 
-There's nothing currently here - but will be soon!
+You can check out some of my projects on my [github](https://github.com/J-acob?tab=repositories). 
+
