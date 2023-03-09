@@ -1,0 +1,49 @@
+<div class="example__canvas bevy-instance">
+    <div class="bevy-instance__progress-status" data-progress-status>
+        <div class="bevy-instance__progress-file" data-progress-file></div>
+        <div class="bevy-instance__progress-track">
+            <div class="bevy-instance__progress-bar" data-progress-bar></div>
+        </div>
+    </div>
+    <canvas class="bevy-instance__canvas" id="bevy" width="1280" height="720"></canvas>
+</div>
+
+<script type="module">
+    import { progressiveFetch } from '/js/tools.js';
+    import init from '/js/{{.Get 0}}.js';
+
+    const canvasEl = document.getElementById('bevy');
+    const progressStatusEl = document.querySelector('[data-progress-status]');
+    const progressFileEl = document.querySelector('[data-progress-file]');
+    const progressBarEl = document.querySelector('[data-progress-bar]');
+    let hideProgressTimeoutId;
+
+    async function loadingBarFetch(resource) {
+        return progressiveFetch(resource, {
+            start: ({ filename }) => {
+                progressStatusEl.style.display = 'block';
+                progressFileEl.textContent = filename;
+
+                if (hideProgressTimeoutId) {
+                    clearTimeout(hideProgressTimeoutId);
+                }
+            },
+            update: ({ isIndeterminate, loadedPercent }) => {
+                progressBarEl.classList.toggle('bevy-instance__progress-bar--indeterminate', isIndeterminate);
+                progressBarEl.style.width = loadedPercent + '%';
+            },
+            finish: () => {
+                // This is a little hack to avoid progress-bar flashing between assets. The thing
+                // is that we don't know how many assets are going to load, so we don't know which
+                // one is the last one. If a new asset starts loading within 50ms, then this timeout
+                // is cleared and the progress element stays visible, avoiding the flashing.
+                // The downside is that the progress bar shows for a brief moment once the wasm starts.
+                hideProgressTimeoutId = setTimeout(() => {
+                    progressStatusEl.style.display = 'none';
+                }, 50);
+            }
+        })
+    }
+    window.bevyLoadingBarFetch = loadingBarFetch;
+    init();
+</script>

@@ -3030,6 +3030,12 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   overflow: visible;
   clip: auto; }
 
+:root {
+  --header-height: 60px;
+  --scroll-padding-top: calc(var(--header-height) + 16px); }
+  @media (min-width: 992px) {
+    :root {
+      --header-height: 72px; } }
 *,
 *:after,
 *:before {
@@ -3055,7 +3061,7 @@ iframe[src*=disqus] {
 
 a {
   font-weight: 500;
-  color: #1565c0;
+  color: #7c90ff;
   text-decoration: none;
   transition: all 0.25s ease-in; }
   a:focus, a:hover {
@@ -3087,7 +3093,7 @@ h6 {
   h4 .heading-link,
   h5 .heading-link,
   h6 .heading-link {
-    color: #1565c0;
+    color: #7c90ff;
     font-weight: inherit;
     text-decoration: none;
     font-size: 80%;
@@ -3228,12 +3234,14 @@ figure {
   width: 100%; }
 
 .container {
-  margin: 1rem auto;
-  max-width: 90rem;
+  --container-padding: 8px;
   width: 100%;
-  padding-left: 2rem;
-  padding-right: 2rem; }
-
+  max-width: calc(1200px + var(--container-padding) * 2);
+  margin: 0 auto;
+  padding: 0 var(--container-padding); }
+  @media (min-width: 992px) {
+    .container {
+      --container-padding: 16px; } }
 .fab {
   font-weight: 400; }
 
@@ -3342,7 +3350,7 @@ figure {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, "游ゴシック", "PingFang SC", STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
       font-weight: 700; }
       .list ul li .title:hover, .list ul li .title:focus {
-        color: #1565c0; }
+        color: #7c90ff; }
 
 @media only screen and (min-width: 768.1px) {
   .list ul:not(.pagination) li {
@@ -3378,7 +3386,7 @@ figure {
           margin-right: 1rem;
           font-size: 1.6rem; }
           .centered .about ul li a:hover, .centered .about ul li a:focus {
-            color: #1565c0; }
+            color: #7c90ff; }
           @media only screen and (max-width: 768px) {
             .centered .about ul li a {
               font-size: 1.4rem; } }
@@ -3479,7 +3487,7 @@ figure {
     font-weight: 600;
     color: #212121; }
   .navigation a:hover, .navigation a:focus {
-    color: #1565c0; }
+    color: #7c90ff; }
   .navigation .navigation-title {
     letter-spacing: 0.1rem;
     text-transform: uppercase; }
@@ -3558,7 +3566,7 @@ figure {
     color: #212121;
     cursor: pointer; }
     .navigation i:hover, .navigation i:focus {
-      color: #1565c0; }
+      color: #7c90ff; }
 
 .pagination {
   margin-top: 6rem;
@@ -3649,7 +3657,7 @@ figure {
   line-height: 2rem;
   margin-bottom: 1rem; }
   .footer a {
-    color: #1565c0; }
+    color: #7c90ff; }
 
 .float-container {
   bottom: 2rem;
@@ -3669,7 +3677,7 @@ figure {
     opacity: 0.5;
     transition: all 0.25s ease-in; }
     .float-container a:hover, .float-container a:focus {
-      color: #1565c0;
+      color: #7c90ff;
       opacity: 1; }
       @media only screen and (max-width: 768px) {
         .float-container a:hover, .float-container a:focus {
