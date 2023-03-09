@@ -20,3 +20,5 @@ There's a lot of integrations that are available for the theme I'm using for thi
 I'm going to make an effort to personalize my website since it's just running with the defaults right now - but what matters is that it's live and usable (for now). 
 
 So far - hugo seems like a really solid platform to develop websites with and likely will look to use it in the future; should I encounter and opportunities to do web development. Being able to use markdown is a really powerful too in terms of usability since I don't actually have to write any html.
+
+I'm updating this post to say that loading WASM files with hugo was a very interesting experience.
