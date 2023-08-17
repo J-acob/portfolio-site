@@ -1,0 +1,71 @@
+.bevy-instance {
+    position: relative;
+
+    &__progress-status {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        bottom: 50%;
+        left: 50%;
+        width: 250px;
+        transform: translateX(-50%);
+
+        &:empty {
+            display: none;
+        }
+    }
+
+    &__progress-file {
+        margin-bottom: 4px;
+        font-weight: normal;
+        font-family: 'Courier New', Courier, monospace;
+        text-shadow: 1px 1px 1px #000;
+        font-size: 0.85em;
+        word-break: break-all;
+    }
+
+    &__progress-track {
+        width: 100%;
+        height: 4px;
+        border-radius: 4px;
+        background-color: #555;
+
+        &:not(:last-child) {
+            margin-bottom: 2px;
+        }
+    }
+
+    &__progress-bar {
+        height: 4px;
+        min-width: 4px;
+        background-color: #799bbb;
+        border-radius: 4px;
+        width: 0px;
+
+        &--indeterminate {
+            @keyframes bg-animation {
+                0%   { background-position: 0px 0; }
+                100% { background-position: -26.5px 0; }
+            }
+
+            // Generated using: https://stripesgenerator.com
+            background-image: linear-gradient(45deg, #ffff00 25%, #000000 25%, #000000 50%, #ffff00 50%, #ffff00 75%, #000000 75%, #000000 100%);
+            background-size: 26.50px 30.49px;
+
+            // Animate background
+            animation-duration: 1s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: infinite;
+            animation-name: bg-animation;
+            animation-timing-function: linear;
+        }
+    }
+
+    &__canvas {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: $border-radius;
+        background: #343842;
+        max-height: 720px !important;
+    }
+}

@@ -1,0 +1,58 @@
+:root {
+  --header-height: 60px;
+  --scroll-padding-top: calc(var(--header-height) + 16px); }
+  @media (min-width: 992px) {
+    :root {
+      --header-height: 72px; } }
+.bevy-instance {
+  position: relative; }
+  .bevy-instance__progress-status {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    width: 250px;
+    transform: translateX(-50%); }
+    .bevy-instance__progress-status:empty {
+      display: none; }
+  .bevy-instance__progress-file {
+    margin-bottom: 4px;
+    font-weight: normal;
+    text-shadow: 1px 1px 1px #000;
+    font-size: 0.85rem;
+    word-break: break-all; }
+  .bevy-instance__progress-track {
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #555; }
+    .bevy-instance__progress-track:not(:last-child) {
+      margin-bottom: 2px; }
+  .bevy-instance__progress-bar {
+    height: 4px;
+    min-width: 4px;
+    background-color: #799bbb;
+    border-radius: 4px;
+    width: 0px; }
+    .bevy-instance__progress-bar--indeterminate {
+      background-image: linear-gradient(131deg, #799bbb 25%, #597899 25%, #597899 50%, #799bbb 50%, #799bbb 75%, #597899 75%, #597899 100%);
+      background-size: 26.50px 30.49px;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: bg-animation;
+      animation-timing-function: linear; }
+
+@keyframes bg-animation {
+  0% {
+    background-position: 0px 0; }
+  100% {
+    background-position: -26.5px 0; } }
+  .bevy-instance__canvas {
+    width: 100% !important;
+    height: auto !important;
+    border-radius: 10px;
+    background: #2b2c2f; }
+
+/*# sourceMappingURL=site.css.map */

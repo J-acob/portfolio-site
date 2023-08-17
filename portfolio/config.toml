@@ -22,11 +22,9 @@ colorScheme = "auto"
 maxSeeAlsoItems = 5
 # Custom CSS
 customCSS = []
-# Custom SCSS, file path is relative to Hugo's asset folder (default: {your project root}/assets)
-customSCSS = []
 
-# Custom JS
-customJS = []
+# Custom SCSS, file path is relative to Hugo's asset folder (default: {your project root}/assets)
+customSCSS = ["scss/custom.scss"]
 
 # Custom remote JS files
 customRemoteJS = []
@@ -65,6 +63,11 @@ weight = 3
 url = "projects/"
 
 [[languages.en.menu.main]]
-name = "Contact me"
+name = "Games"
 weight = 4
+url = "games/"
+
+[[languages.en.menu.main]]
+name = "Contact me"
+weight = 5
 url = "contact/"

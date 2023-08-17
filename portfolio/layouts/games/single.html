@@ -1,0 +1,110 @@
+{{ define "title" }}
+  {{ .Title }} · {{ .Site.Title }}
+{{ end }}
+{{ define "content" }}
+<!-- NOTE: The script must appear before everything else loads!-->
+<script type="module">
+    import { progressiveFetch } from '/js/tools.js'; 
+    import init from '/js/{{ .Params.wasm }}.js';
+
+    const canvasEl = document.getElementById('bevy');
+    const progressStatusEl = document.querySelector('[data-progress-status]');
+    const progressFileEl = document.querySelector('[data-progress-file]');
+    const progressBarEl = document.querySelector('[data-progress-bar]');
+    let hideProgressTimeoutId;
+
+    async function loadingBarFetch(resource) {
+        return progressiveFetch(resource, {
+            start: ({ filename }) => {
+                progressStatusEl.style.display = 'block';
+                progressFileEl.textContent = filename;
+
+                if (hideProgressTimeoutId) {
+                    clearTimeout(hideProgressTimeoutId);
+                }
+            },
+            update: ({ isIndeterminate, loadedPercent }) => {
+                progressBarEl.classList.toggle('bevy-instance__progress-bar--indeterminate', isIndeterminate);
+                progressBarEl.style.width = loadedPercent + '%';
+            },
+            finish: () => {
+                // This is a little hack to avoid progress-bar flashing between assets. The thing
+                // is that we don't know how many assets are going to load, so we don't know which
+                // one is the last one. If a new asset starts loading within 49ms, then this timeout
+                // is cleared and the progress element stays visible, avoiding the flashing.
+                // The downside is that the progress bar shows for a brief moment once the wasm starts.
+                hideProgressTimeoutId = setTimeout(() => {
+                    progressStatusEl.style.display = 'none';
+                }, 49);
+            }
+        })
+    }
+    window.bevyLoadingBarFetch = loadingBarFetch;
+    init();
+</script>
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">
+            <a class="title-link" href="{{ .Permalink | safeURL }}">
+              {{ .Title }}
+            </a>
+          </h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                {{ .Date | time.Format (.Site.Params.dateFormat | default "January 2, 2006" ) }}
+              </time>
+            </span>
+          </div>
+          {{ with .GetTerms "authors" }}{{ partial "taxonomy/authors.html" . }}{{ end }}
+          {{ with .GetTerms "categories" }}{{ partial "taxonomy/categories.html" . }}{{ end }}
+          {{ with .GetTerms "tags" }}{{ partial "taxonomy/tags.html" . }}{{ end }}
+        </div>
+      </header>
+
+
+      <!-- This is where the game will load!-->
+      <div class="example__canvas bevy-instance">
+          <div class="bevy-instance__progress-status" data-progress-status>
+              <div class="bevy-instance__progress-file" data-progress-file></div>
+              <div class="bevy-instance__progress-track">
+                  <div class="bevy-instance__progress-bar" data-progress-bar></div>
+              </div>
+          </div>
+          <canvas class="bevy-instance__canvas" id="bevy" width="1280" height="720"></canvas>
+      </div>
+
+      <p>
+        {{ .Params.description}}
+      </p>
+
+        
+      <!-- This must stay for content to be rendered! -->
+      <div class="post-content">
+        {{ if .Params.featuredImage }}
+          <img src="{{ .Params.featuredImage | relURL }}" alt="Featured image"/>
+        {{ end }}
+        {{ .Content }}
+      </div>
+
+
+      
+
+      <footer>
+        {{ partial "posts/series.html" . }}
+        {{ partial "posts/disqus.html" . }}
+        {{ partial "posts/commento.html" . }}
+        {{ partial "posts/utterances.html" . }}
+        {{ partial "posts/giscus.html" . }}
+      </footer>
+    </article>
+
+    {{ partial "posts/math.html" . }}
+  </section>
+{{ end }}
+
